@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 /// An abstract class for touch inputs.
@@ -15,7 +16,7 @@ abstract class FlTouchInput {
 abstract class FlTouchLongInput extends FlTouchInput {}
 
 /// Represents a [GestureDetector.onLongPressStart] event.
-class FlLongPressStart extends FlTouchLongInput {
+class FlLongPressStart extends FlTouchLongInput with EquatableMixin {
 
   /// It is a localized touch position inside our widget,
   /// it represents [LongPressStartDetails.localPosition].
@@ -32,10 +33,15 @@ class FlLongPressStart extends FlTouchLongInput {
     return localPosition;
   }
 
+  @override
+  List<Object> get props => [
+    localPosition,
+  ];
+
 }
 
 /// Represents a [GestureDetector.onLongPressMoveUpdate] event.
-class FlLongPressMoveUpdate extends FlTouchLongInput {
+class FlLongPressMoveUpdate extends FlTouchLongInput with EquatableMixin {
 
   /// It is a localized touch position inside our widget,
   /// it represents [LongPressMoveUpdateDetails.localPosition].
@@ -52,10 +58,15 @@ class FlLongPressMoveUpdate extends FlTouchLongInput {
     return localPosition;
   }
 
+  @override
+  List<Object> get props => [
+    localPosition,
+  ];
+
 }
 
 /// Represents a [GestureDetector.onLongPressEnd] event.
-class FlLongPressEnd extends FlTouchLongInput {
+class FlLongPressEnd extends FlTouchLongInput with EquatableMixin {
 
   /// It is a localized touch position inside our widget,
   /// it represents [LongPressEndDetails.localPosition].
@@ -71,13 +82,19 @@ class FlLongPressEnd extends FlTouchLongInput {
   Offset getOffset() {
     return localPosition;
   }
+
+  @override
+  List<Object> get props => [
+    localPosition,
+  ];
+
 }
 
 /// Abstract class for normal touches input
 abstract class FlTouchNormalInput extends FlTouchInput {}
 
 /// Represents a [GestureDetector.onPanDown] event.
-class FlPanStart extends FlTouchNormalInput {
+class FlPanStart extends FlTouchNormalInput with EquatableMixin {
 
   /// It is a localized touch position inside our widget,
   /// it represents [DragDownDetails.localPosition].
@@ -94,10 +111,15 @@ class FlPanStart extends FlTouchNormalInput {
     return localPosition;
   }
 
+  @override
+  List<Object> get props => [
+    localPosition,
+  ];
+
 }
 
 /// Represents a [GestureDetector.onPanUpdate] event.
-class FlPanMoveUpdate extends FlTouchNormalInput {
+class FlPanMoveUpdate extends FlTouchNormalInput with EquatableMixin {
 
   /// It is a localized touch position inside our widget,
   /// it represents [DragUpdateDetails.localPosition].
@@ -113,10 +135,16 @@ class FlPanMoveUpdate extends FlTouchNormalInput {
   Offset getOffset() {
     return localPosition;
   }
+
+  @override
+  List<Object> get props => [
+    localPosition,
+  ];
+
 }
 
 /// Represents a [GestureDetector.onPanEnd] event.
-class FlPanEnd extends FlTouchNormalInput {
+class FlPanEnd extends FlTouchNormalInput with EquatableMixin {
 
   /// It is a localized touch position inside our widget.
   final Offset localPosition;
@@ -136,5 +164,11 @@ class FlPanEnd extends FlTouchNormalInput {
   Offset getOffset() {
     return localPosition;
   }
+
+  @override
+  List<Object> get props => [
+    localPosition,
+    velocity,
+  ];
 
 }
